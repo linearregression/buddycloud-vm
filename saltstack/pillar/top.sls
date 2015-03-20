@@ -2,6 +2,7 @@ base:
   '*':
     - buddycloud
     - users
-    - postgres
+    - bind
     - iptables
+    - postgres
 
