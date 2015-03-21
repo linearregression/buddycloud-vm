@@ -19,15 +19,19 @@ bind:
     "core_dhcp":
       secret: "YourSecretKey"
   configured_zones:
-    {{ salt['pillar.get']('buddycloud:lookup:domain') }}:
+    sub.domain.com:
       type: master
       notify: False
     1.168.192.in-addr.arpa:
       type: master
       notify: False
+    dynamic.domain.com:
+      type: master
+      allow-update: "key core_dhcp"
+      notify: True 
 
 bind:
   available_zones:
-    {{ salt['pillar.get']('buddycloud:lookup:domain') }}:
-      file: db.{{ salt['pillar.get']('buddycloud:lookup:domain') }}
-      masters: "127.0.0.1;"
+    sub.domain.org:
+      file: db.sub.domain.org
+      masters: "192.168.0.1;"
